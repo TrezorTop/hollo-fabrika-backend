@@ -5,6 +5,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{92F79363-ED30-4DD8-8D90-D891622808B8}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
+		.env = .env
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HolloFabrika.Feature", "HolloFabrika.Feature\HolloFabrika.Feature.csproj", "{CBE53D61-387C-4BEF-98EF-385BB6C465E8}"
