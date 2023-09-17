@@ -1,0 +1,41 @@
+﻿services:
+  hollofabrika.api:
+    restart: always
+    depends_on:
+      hollofabrika.db:
+        condition: service_healthy
+    build:
+      context: .
+      dockerfile: HolloFabrika.Api/Dockerfile
+    ports:
+      - "5001:5001"
+    volumes:
+      - static-files:/app/static/
+    environment:
+      ASPNETCORE_URLS: http://+:5001
+      ASPNETCORE_POSTGRES__DATABASE: ${POSTGRES_DATABASE}
+      ASPNETCORE_POSTGRES__USER: ${POSTGRES_USER}
+      ASPNETCORE_POSTGRES__PASSWORD: ${POSTGRES_PASSWORD}
+      ASPNETCORE_POSTGRES__PORT: 5432
+  hollofabrika.db:
+    restart: always
+    image: postgres:alpine
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d ${POSTGRES_DATABASE} -U ${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 15s
+      retries: 10
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DATABASE}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+volumes:
+  db-data:
+    driver: local
+  static-files:
+    driver: local
+  
