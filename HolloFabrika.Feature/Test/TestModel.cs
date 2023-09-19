@@ -1,3 +1,7 @@
 namespace HolloFabrika.Feature.Test;
 
-public record TestModel(int Id, string Message);
+public class TestModel
+{
+    public int Id { get; set; }
+    public required string Message { get; set; }
+};
