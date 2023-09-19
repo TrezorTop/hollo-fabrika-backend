@@ -1,3 +1,4 @@
+using System.Text.Json;
 using FluentResults;
 using HolloFabrika.Feature.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,8 @@ public sealed class TestFeature : IFeatureMarker
         _applicationDatabase.Tests.Add(model);
 
         await _applicationDatabase.SaveChangesAsync();
+
+        Console.WriteLine(JsonSerializer.Serialize(model, new JsonSerializerOptions() { WriteIndented = true }));
 
         return model;
     }
