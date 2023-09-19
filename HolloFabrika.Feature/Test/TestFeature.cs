@@ -32,8 +32,6 @@ public sealed class TestFeature : IFeatureMarker
 
         await _applicationDatabase.SaveChangesAsync();
 
-        Console.WriteLine(JsonSerializer.Serialize(model, new JsonSerializerOptions() { WriteIndented = true }));
-
         return model;
     }
 }
