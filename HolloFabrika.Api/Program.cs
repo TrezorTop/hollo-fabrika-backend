@@ -1,10 +1,8 @@
-using System.Text.Json;
 using HolloFabrika.Feature;
 using HolloFabrika.Feature.Test;
 using HolloFabrika.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
-Console.WriteLine(JsonSerializer.Serialize(Environment.GetEnvironmentVariables()));
 if (builder.Environment.IsDevelopment())
 {
     DotNetEnv.Env.TraversePath().Load();

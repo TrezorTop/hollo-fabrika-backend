@@ -28,10 +28,10 @@ public static class ServicesExtensions
         var connectionString = new NpgsqlConnectionStringBuilder
             {
                 Port = 5432,
-                Host = Environment.GetEnvironmentVariable("POSTGRES_HOST"),
-                Database = Environment.GetEnvironmentVariable("POSTGRES_DATABASE"),
-                Password = Environment.GetEnvironmentVariable("POSTGRES_PASSWORD"),
-                Username = Environment.GetEnvironmentVariable("POSTGRES_USER"),
+                Host = Environment.GetEnvironmentVariable("ASPNETCORE_POSTGRES_HOST"),
+                Database = Environment.GetEnvironmentVariable("ASPNETCORE_POSTGRES_DATABASE"),
+                Password = Environment.GetEnvironmentVariable("ASPNETCORE_POSTGRES_PASSWORD"),
+                Username = Environment.GetEnvironmentVariable("ASPNETCORE_POSTGRES_USER"),
                 Pooling = true,
             }
             .ToString();
