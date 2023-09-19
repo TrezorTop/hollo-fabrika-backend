@@ -14,7 +14,7 @@ builder.Services.AddFeatures();
 var app = builder.Build();
 await app.Services.InfrastructureInitAsync();
 
-app.MapGet("/", async (TestFeature testFeature) =>
+app.MapGet("/test", async (TestFeature testFeature) =>
 {
     var result = await testFeature.Get();
 
@@ -24,7 +24,7 @@ app.MapGet("/", async (TestFeature testFeature) =>
     return Results.Ok(result.Value);
 });
 
-app.MapPost("/", async (TestFeature testFeature) =>
+app.MapPost("/test", async (TestFeature testFeature) =>
 {
     var result = await testFeature.Create();
 
