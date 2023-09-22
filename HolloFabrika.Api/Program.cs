@@ -18,8 +18,7 @@ app.MapGet("/test", async (TestFeature testFeature) =>
 {
     var result = await testFeature.Get();
 
-    if (result.IsFailed)
-        return Results.BadRequest(result.Reasons);
+    if (result.IsFailed) return Results.BadRequest(result.Reasons);
 
     return Results.Ok(result.Value);
 });
