@@ -1,14 +1,20 @@
+using HolloFabrika.Feature.Entities;
 using HolloFabrika.Feature.Interfaces;
-using HolloFabrika.Feature.Test;
 using Microsoft.EntityFrameworkCore;
 
 namespace HolloFabrika.Infrastructure.Persistence;
 
 public class ApplicationContext : DbContext, IApplicationDatabase
 {
-    public DbSet<TestModel> Tests => Set<TestModel>();
+    public DbSet<Product> Products => Set<Product>();
 
     public ApplicationContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
     {
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationContext).Assembly);
     }
 }

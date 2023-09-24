@@ -9,11 +9,11 @@ public static class ServicesExtensions
     {
         var featureTypes = typeof(ServicesExtensions).Assembly.GetTypes()
             .Where(type =>
-                type is { IsAbstract: false, IsInterface: false } && type.IsAssignableTo(typeof(IFeatureMarker))
+                 type is { IsAbstract: false, IsInterface: false } && type.IsAssignableTo(typeof(IFeatureMarker))
             )
             .ToArray();
 
-        
+
         foreach (var featureType in featureTypes)
         {
             serviceCollection.AddScoped(featureType);

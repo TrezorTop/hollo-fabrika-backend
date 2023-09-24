@@ -1,11 +1,11 @@
-using HolloFabrika.Feature.Test;
+using HolloFabrika.Feature.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace HolloFabrika.Feature.Interfaces;
 
 public interface IApplicationDatabase
 {
-    DbSet<TestModel> Tests { get; }
+    DbSet<Product> Products { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

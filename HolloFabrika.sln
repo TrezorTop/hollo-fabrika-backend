@@ -12,6 +12,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HolloFabrika.Feature", "Hol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HolloFabrika.Infrastructure", "HolloFabrika.Infrastructure\HolloFabrika.Infrastructure.csproj", "{75121840-9DC9-474E-8CFE-84BD95638149}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3D01B009-9524-4A85-AD31-B6BA7E2321F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HolloFabrika.Api.Tests.Integration", "HolloFabrika.Api.Tests.Integration\HolloFabrika.Api.Tests.Integration.csproj", "{5A0E99E2-542E-4433-8D61-E48080DAA6EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,12 @@ Global
 		{75121840-9DC9-474E-8CFE-84BD95638149}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75121840-9DC9-474E-8CFE-84BD95638149}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75121840-9DC9-474E-8CFE-84BD95638149}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A0E99E2-542E-4433-8D61-E48080DAA6EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A0E99E2-542E-4433-8D61-E48080DAA6EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A0E99E2-542E-4433-8D61-E48080DAA6EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A0E99E2-542E-4433-8D61-E48080DAA6EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5A0E99E2-542E-4433-8D61-E48080DAA6EB} = {3D01B009-9524-4A85-AD31-B6BA7E2321F9}
 	EndGlobalSection
 EndGlobal
