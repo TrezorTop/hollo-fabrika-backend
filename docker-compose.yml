@@ -18,6 +18,8 @@
       ASPNETCORE_POSTGRES_USER: ${ASPNETCORE_POSTGRES_USER}
       ASPNETCORE_POSTGRES_PASSWORD: ${ASPNETCORE_POSTGRES_PASSWORD}
       ASPNETCORE_POSTGRES_PORT: 5432
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   hollofabrika.db:
     restart: always
     image: postgres:alpine
