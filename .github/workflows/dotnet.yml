@@ -40,9 +40,7 @@ jobs:
           script: |
             cd ~/HolloFabrikaBackend
             git pull
-            cd HolloFabrika.Api
-            docker build -t hollofabrika-api-tests .
-            docker rmi hollofabrika-api-tests
+            docker compose --env-file .env build hollofabrika.api
             
   deploy:
     needs: test
