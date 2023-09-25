@@ -26,6 +26,8 @@ public static class ServicesExtensions
 
     internal static void ConfigureNpgsql(DbContextOptionsBuilder builder)
     {
+        Console.WriteLine(JsonSerializer.Serialize(Environment.GetEnvironmentVariables(), new JsonSerializerOptions() { WriteIndented = true }));
+
         var connectionString = new NpgsqlConnectionStringBuilder
             {
                 Port = 5432,
