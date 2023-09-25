@@ -40,7 +40,9 @@ jobs:
           script: |
             cd ~/HolloFabrikaBackend
             git pull
-            dotnet test --no-build --verbosity normal
+            cd /HolloFabrika.Api
+            docker build -t hollofabrika-api-tests .
+            docker rmi hollofabrika-api-tests
             
   deploy:
     needs: test
