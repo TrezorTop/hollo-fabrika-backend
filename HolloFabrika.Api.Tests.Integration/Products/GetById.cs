@@ -22,6 +22,6 @@ public class GetById : IClassFixture<WebApplicationFactory<IApiMarker>>
         var response = await _httpClient.GetAsync($"{ApiRoutes.Products.Base}/{Guid.NewGuid()}");
 
         // Assert
-        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound);
     }
 }
