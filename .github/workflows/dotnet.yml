@@ -24,10 +24,8 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build --no-restore
-      - name: Test
-        run: dotnet test --no-build --verbosity normal
   
-  deploy:
+  test:
     needs: build
     
     runs-on: ubuntu-latest
@@ -42,4 +40,20 @@ jobs:
           script: |
             cd ~/HolloFabrikaBackend
             git pull
+            dotnet test --no-build --verbosity normal
+            
+  deploy:
+    needs: test
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: SSH and deploy node app
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            cd ~/HolloFabrikaBackend
             docker compose --env-file .env up -d --build --force-recreate hollofabrika.api
