@@ -40,7 +40,7 @@ jobs:
           script: |
             cd ~/HolloFabrikaBackend
             git pull
-            docker compose --env-file .env build hollofabrika.api
+            docker compose build hollofabrika.api
             
   deploy:
     needs: test

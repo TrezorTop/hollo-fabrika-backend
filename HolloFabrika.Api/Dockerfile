@@ -11,6 +11,8 @@ COPY . .
 WORKDIR "/src/HolloFabrika.Api"
 RUN dotnet build "HolloFabrika.Api.csproj" -c Release -o /app/build
 
+COPY .env-test .env
+
 WORKDIR /src
 RUN dotnet test -c Release
 
