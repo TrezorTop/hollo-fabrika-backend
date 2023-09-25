@@ -24,24 +24,15 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build --no-restore
+      - name: Test
+        run: dotnet test -c Release
+        env:
+          ASPNETCORE_POSTGRES_USER: ${{ ASPNETCORE_POSTGRES_USER }}
+          ASPNETCORE_POSTGRES_PASSWORD: ${{ ASPNETCORE_POSTGRES_PASSWORD }}
+          ASPNETCORE_POSTGRES_DATABASE: ${{ ASPNETCORE_POSTGRES_DATABASE }}
+          ASPNETCORE_POSTGRES_HOST: ${{ ASPNETCORE_POSTGRES_HOST }}
   
-  test:
-    needs: build
-    
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: SSH and deploy node app
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          script: |
-            cd ~/HolloFabrikaBackend
-            git pull
-            docker compose build hollofabrika.api
-            
+  
   deploy:
     needs: test
     
