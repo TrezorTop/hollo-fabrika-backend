@@ -1,9 +1,4 @@
-using AutoDto.Setup;
-using HolloFabrika.Api.Contracts;
 using HolloFabrika.Api.Endpoints.Interfaces;
-using HolloFabrika.Feature.Entities;
-using HolloFabrika.Feature.Features.Categories;
-using Attribute = HolloFabrika.Feature.Entities.Attribute;
 
 namespace HolloFabrika.Api.Endpoints.Categories;
 
