@@ -47,4 +47,5 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd ~/HolloFabrikaBackend
+            git pull
             docker compose --env-file .env up -d --build --force-recreate hollofabrika.api
