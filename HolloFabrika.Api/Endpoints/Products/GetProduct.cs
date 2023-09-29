@@ -10,7 +10,7 @@ public class GetProduct : IEndpoint
     {
         app.MapGet(ApiRoutes.Products.Get, async (GetProductFeature getProductFeature) =>
         {
-            var result = await getProductFeature.Get();
+            var result = await getProductFeature.GetAsync();
 
             return Results.Ok(result.Value);
         });

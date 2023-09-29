@@ -13,7 +13,7 @@ public class CreateProductFeature : IFeatureMarker
         _applicationDatabase = applicationDatabase;
     }
 
-    public async Task<Result<Product>> Create(Product product)
+    public async Task<Result<Product>> CreateAsync(Product product)
     {
         _applicationDatabase.Products.Add(product);
         await _applicationDatabase.SaveChangesAsync();

@@ -9,9 +9,9 @@ public class CreateProduct : IEndpoint
 {
     public static void DefineEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapPost(ApiRoutes.Products.Create, async (CreateProductDto productDto, CreateProductFeature createProductFeature) =>
+        app.MapPost(ApiRoutes.Products.Create, async (CreateProductRequest productRequest, CreateProductFeature createProductFeature) =>
         {
-            var result = await createProductFeature.Create(productDto.ToProduct());
+            var result = await createProductFeature.CreateAsync(productRequest.ToProduct());
 
             if (result.IsFailed) return Results.BadRequest(result.Reasons);
 
@@ -20,7 +20,7 @@ public class CreateProduct : IEndpoint
     }
 }
 
-public class CreateProductDto
+public class CreateProductRequest
 {
     public required string Name { get; set; }
 

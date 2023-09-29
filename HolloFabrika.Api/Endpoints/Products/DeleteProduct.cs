@@ -10,7 +10,7 @@ public class DeleteProduct : IEndpoint
     {
         app.MapDelete(ApiRoutes.Products.Delete, async (string id, DeleteProductFeature deleteProductFeature) =>
         {
-            var result = await deleteProductFeature.Delete(id);
+            var result = await deleteProductFeature.DeleteAsync(id);
 
             if (result.IsFailed) return Results.NotFound(result.Reasons);
 

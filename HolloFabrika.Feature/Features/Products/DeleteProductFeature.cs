@@ -13,9 +13,9 @@ public class DeleteProductFeature : IFeatureMarker
         _applicationDatabase = applicationDatabase;
     }
 
-    public async Task<Result<Product>> Delete(string guid)
+    public async Task<Result<Product>> DeleteAsync(string id)
     {
-        var product = _applicationDatabase.Products.FirstOrDefault(x => x.Id.ToString() == guid);
+        var product = _applicationDatabase.Products.FirstOrDefault(x => x.Id.ToString() == id);
 
         if (product == null) return Result.Fail("Product not found");
 

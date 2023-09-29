@@ -14,7 +14,7 @@ public class GetProductFeature : IFeatureMarker
         _applicationDatabase = applicationDatabase;
     }
 
-    public async Task<Result<List<Product>>> Get()
+    public async Task<Result<List<Product>>> GetAsync()
     {
         var products = await _applicationDatabase.Products.ToListAsync();
 

@@ -14,7 +14,7 @@ public class GetByIdProductFeature : IFeatureMarker
         _applicationDatabase = applicationDatabase;
     }
 
-    public async Task<Result<Product>> GetById(string guid)
+    public async Task<Result<Product>> GetByIdAsync(string guid)
     {
         var product = await _applicationDatabase.Products.FirstOrDefaultAsync(x => x.Id.ToString() == guid);
 

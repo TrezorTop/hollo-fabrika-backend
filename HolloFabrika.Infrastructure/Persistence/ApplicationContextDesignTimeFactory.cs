@@ -1,3 +1,4 @@
+using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
@@ -8,6 +9,8 @@ public class ApplicationContextDesignTimeFactory : IDesignTimeDbContextFactory<A
     public ApplicationContext CreateDbContext(string[] args)
     {
         var builder = new DbContextOptionsBuilder();
+
+        Env.TraversePath().Load();
 
         ServicesExtensions.ConfigureNpgsql(builder);
 

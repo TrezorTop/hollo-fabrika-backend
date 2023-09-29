@@ -11,7 +11,7 @@ public class GetByIdProduct : IEndpoint
     {
         app.MapGet(ApiRoutes.Products.GetById, async (string id, GetByIdProductFeature getByIdProductFeature) =>
         {
-            var result = await getByIdProductFeature.GetById(id);
+            var result = await getByIdProductFeature.GetByIdAsync(id);
 
             if (result.IsFailed) return Results.NotFound(result.Reasons);
 

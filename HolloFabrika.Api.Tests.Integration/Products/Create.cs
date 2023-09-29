@@ -15,7 +15,7 @@ public class Create : IClassFixture<WebApplicationFactory<IApiMarker>>, IAsyncLi
     private readonly HttpClient _httpClient;
     private List<Guid> _createdIds = new List<Guid>();
 
-    private readonly Faker<CreateProductDto> _productFaker = new Faker<CreateProductDto>()
+    private readonly Faker<CreateProductRequest> _productFaker = new Faker<CreateProductRequest>()
         .RuleFor(x => x.Name, faker => faker.Commerce.ProductName());
 
     public Create(WebApplicationFactory<IApiMarker> applicationFactory)
