@@ -1,6 +1,7 @@
 using FluentResults;
 using HolloFabrika.Feature.Entities;
 using HolloFabrika.Feature.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace HolloFabrika.Feature.Features.Categories;
 
@@ -15,7 +16,7 @@ public class DeleteCategoryFeature : IFeatureMarker
 
     public async Task<Result<Category>> DeleteAsync(string id)
     {
-        var category = _applicationDatabase.Categories.FirstOrDefault(x => id == x.Id.ToString());
+        var category = _applicationDatabase.Categories.Include(x => x.Attributes).FirstOrDefault(x => id == x.Id.ToString());
 
         if (category == null) return Result.Fail("Category not found");
 

@@ -4,13 +4,15 @@ using HolloFabrika.Feature.Features.Products;
 
 namespace HolloFabrika.Api.Endpoints.Products;
 
-public class GetProduct : IEndpoint
+public class Delete : IEndpoint
 {
     public static void DefineEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet(ApiRoutes.Products.Get, async (GetProductFeature getProductFeature) =>
+        app.MapDelete(ApiRoutes.Products.Delete, async (string id, DeleteProductFeature deleteProductFeature) =>
         {
-            var result = await getProductFeature.GetAsync();
+            var result = await deleteProductFeature.DeleteAsync(id);
+
+            if (result.IsFailed) return Results.NotFound(result.Reasons);
 
             return Results.Ok(result.Value);
         });

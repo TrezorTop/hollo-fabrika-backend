@@ -16,7 +16,7 @@ public class GetCategoryFeature : IFeatureMarker
 
     public async Task<Result<List<Category>>> GetAsync()
     {
-        var categories = await _applicationDatabase.Categories.ToListAsync();
+        var categories = await _applicationDatabase.Categories.Include(x => x.Attributes).ToListAsync();
 
         return Result.Ok(categories);
     }
