@@ -24,9 +24,9 @@ public class Create : IEndpoint
             var category = new Category
             {
                 Name = categoryRequest.Name,
-                Attributes = categoryRequest.Attributes.Select(x => new Attribute
+                Attributes = categoryRequest.Attributes!.Select(x => new Attribute
                 {
-                    Name = x.Name
+                    Name = x.Name!
                 }).ToList()
             };
 

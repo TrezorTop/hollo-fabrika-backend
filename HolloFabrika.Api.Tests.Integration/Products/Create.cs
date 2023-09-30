@@ -26,8 +26,6 @@ public class Create : IClassFixture<WebApplicationFactory<IApiMarker>>, IAsyncLi
     [Fact]
     public async Task Create_ReturnsOk_WhenProductCreated()
     {
-        
-        
         // Arrange
         var product = _productFaker.Generate();
 
