@@ -1,6 +1,7 @@
 using FluentResults;
 using HolloFabrika.Feature.Entities;
 using HolloFabrika.Feature.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace HolloFabrika.Feature.Features.Products;
 
@@ -15,7 +16,7 @@ public class DeleteProductFeature : IFeatureMarker
 
     public async Task<Result<Product>> DeleteAsync(string id)
     {
-        var product = _applicationDatabase.Products.FirstOrDefault(x => x.Id.ToString() == id);
+        var product = await _applicationDatabase.Products.FirstOrDefaultAsync(x => x.Id.ToString() == id);
 
         if (product == null) return Result.Fail("Product not found");
 

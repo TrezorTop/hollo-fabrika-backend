@@ -1,12 +1,11 @@
 using FluentValidation;
-using HolloFabrika.Api.Contracts.Dto;
-using HolloFabrika.Feature.Features.Categories;
+using HolloFabrika.Api.Contracts.Request;
 
 namespace HolloFabrika.Api.Validators;
 
-public class CategoryValidator : AbstractValidator<CategoryRequest>
+public class CategoryValidator : AbstractValidator<CreateCategoryRequest>
 {
-    public CategoryValidator(GetCategoryFeature getCategoryFeature)
+    public CategoryValidator()
     {
         RuleFor(x => x.Name)
             .NotEmpty();
@@ -15,16 +14,43 @@ public class CategoryValidator : AbstractValidator<CategoryRequest>
             .NotNull();
 
         RuleForEach(x => x.Attributes)
-            .SetValidator(new CategoryAttributeValidator());
+            .SetValidator(new CreateCategoryAttributeValidator());
     }
 }
 
-internal class CategoryAttributeValidator : AbstractValidator<CategoryAttributeRequest>
+internal class CreateCategoryAttributeValidator : AbstractValidator<CreateCategoryAttributeRequest>
 {
-    public CategoryAttributeValidator()
+    public CreateCategoryAttributeValidator()
     {
         RuleFor(x => x.Name)
             .NotEmpty()
             .WithMessage("Name cannot be empty");
+    }
+}
+
+public class UpdateCategoryValidator : AbstractValidator<UpdateCategoryRequest>
+{
+    public UpdateCategoryValidator()
+    {
+        RuleFor(x => x.Name)
+            .NotEmpty();
+
+        RuleFor(x => x.Attributes)
+            .NotNull();
+
+        RuleForEach(x => x.Attributes)
+            .SetValidator(new UpdateCategoryAttributeValidator());
+    }
+}
+
+internal class UpdateCategoryAttributeValidator : AbstractValidator<UpdateCategoryAttributeRequest>
+{
+    public UpdateCategoryAttributeValidator()
+    {
+        RuleFor(x => x.Id)
+            .NotEmpty();
+
+        RuleFor(x => x.Name)
+            .NotEmpty();
     }
 }

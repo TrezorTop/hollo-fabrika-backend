@@ -1,5 +1,5 @@
 using HolloFabrika.Api.Contracts;
-using HolloFabrika.Api.Contracts.Dto;
+using HolloFabrika.Api.Contracts.Response;
 using HolloFabrika.Api.Endpoints.Interfaces;
 using HolloFabrika.Feature.Features.Categories;
 

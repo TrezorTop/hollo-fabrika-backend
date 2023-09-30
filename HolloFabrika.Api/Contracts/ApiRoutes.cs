@@ -13,6 +13,8 @@ public static class ApiRoutes
         public const string Create = Base;
 
         public const string Delete = $"{Base}/{{id:guid}}";
+
+        public const string Update = $"{Base}/{{id:guid}}";
     }
 
     public static class Categories
@@ -26,5 +28,7 @@ public static class ApiRoutes
         public const string Create = Base;
 
         public const string Delete = $"{Base}/{{id:guid}}";
+        
+        public const string Update = $"{Base}/{{id:guid}}";
     }
 }

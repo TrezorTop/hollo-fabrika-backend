@@ -16,7 +16,9 @@ public class DeleteCategoryFeature : IFeatureMarker
 
     public async Task<Result<Category>> DeleteAsync(string id)
     {
-        var category = _applicationDatabase.Categories.Include(x => x.Attributes).FirstOrDefault(x => id == x.Id.ToString());
+        var category = await _applicationDatabase.Categories
+            .Include(x => x.Attributes)
+            .FirstOrDefaultAsync(x => id == x.Id.ToString());
 
         if (category == null) return Result.Fail("Category not found");
 

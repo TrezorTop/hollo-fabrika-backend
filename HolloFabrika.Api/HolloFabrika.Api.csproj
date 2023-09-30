@@ -24,6 +24,7 @@
       <ProjectReference Include="..\HolloFabrika.Infrastructure\HolloFabrika.Infrastructure.csproj" />
 
 
+
     </ItemGroup>
 
 
