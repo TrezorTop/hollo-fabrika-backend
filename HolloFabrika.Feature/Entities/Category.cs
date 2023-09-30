@@ -9,16 +9,11 @@ public class Category
 
 public class Attribute
 {
-    public Attribute(Category category)
-    {
-        Category = category;
-    }
-
     public Guid Id { get; set; } = Guid.NewGuid();
     public required string Name { get; set; }
     public required string Value { get; set; }
     public Guid CategoryId { get; set; }
-    public Category Category { get; set; }
+    public Category Category { get; set; } = null!;
 }
 
 public static class CategoryConstants
