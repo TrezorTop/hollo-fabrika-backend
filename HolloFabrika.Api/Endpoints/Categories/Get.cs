@@ -1,4 +1,5 @@
 using HolloFabrika.Api.Contracts;
+using HolloFabrika.Api.Contracts.Dto;
 using HolloFabrika.Api.Endpoints.Interfaces;
 using HolloFabrika.Feature.Features.Categories;
 
@@ -12,15 +13,14 @@ public class Get : IEndpoint
         {
             var result = await getCategoryFeature.GetAsync();
 
-            return Results.Ok(result.Value.Select(x => new CategoryDto.CategoryResponse
+            return Results.Ok(result.Value.Select(x => new CategoryResponse
             {
                 Id = x.Id,
                 Name = x.Name,
-                Attributes = x.Attributes.Select(x => new CategoryDto.CategoryAttributeResponse
+                Attributes = x.Attributes.Select(x => new CategoryAttributeResponse
                 {
                     Id = x.Id,
-                    Name = x.Name,
-                    Value = x.Value
+                    Name = x.Name
                 }).ToList(),
             }));
         });

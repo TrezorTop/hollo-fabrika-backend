@@ -1,4 +1,5 @@
 using HolloFabrika.Api.Contracts;
+using HolloFabrika.Api.Contracts.Dto;
 using HolloFabrika.Api.Endpoints.Interfaces;
 using HolloFabrika.Feature.Features.Categories;
 
@@ -14,15 +15,14 @@ public class GetById : IEndpoint
 
             if (result.IsFailed) return Results.NotFound(result.Reasons);
 
-            return Results.Ok(new CategoryDto.CategoryResponse
+            return Results.Ok(new CategoryResponse
             {
                 Id = result.Value.Id,
                 Name = result.Value.Name,
-                Attributes = result.Value.Attributes.Select(x => new CategoryDto.CategoryAttributeResponse
+                Attributes = result.Value.Attributes.Select(x => new CategoryAttributeResponse
                 {
                     Id = x.Id,
-                    Name = x.Name,
-                    Value = x.Value
+                    Name = x.Name
                 }).ToList(),
             });
         });

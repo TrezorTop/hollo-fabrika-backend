@@ -36,11 +36,6 @@ internal class AttributeConfiguration : IEntityTypeConfiguration<Attribute>
             .IsRequired();
 
         builder
-            .Property(x => x.Value)
-            .HasMaxLength(CategoryConstants.NameMaxLength)
-            .IsRequired();
-
-        builder
             .HasOne(x => x.Category)
             .WithMany(x => x.Attributes)
             .OnDelete(DeleteBehavior.Cascade);
