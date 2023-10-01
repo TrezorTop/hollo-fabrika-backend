@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
-        <Nullable>enable</Nullable>
+        <Nullable>annotations</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
@@ -22,6 +22,8 @@
     <ItemGroup>
       <ProjectReference Include="..\HolloFabrika.Feature\HolloFabrika.Feature.csproj" />
       <ProjectReference Include="..\HolloFabrika.Infrastructure\HolloFabrika.Infrastructure.csproj" />
+
+
 
 
 

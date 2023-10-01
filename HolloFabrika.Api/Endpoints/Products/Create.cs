@@ -1,5 +1,6 @@
 using HolloFabrika.Api.Contracts;
 using HolloFabrika.Api.Endpoints.Interfaces;
+using HolloFabrika.Api.Extensions;
 using HolloFabrika.Feature.Entities;
 using HolloFabrika.Feature.Features.Products;
 
@@ -13,7 +14,7 @@ public class Create : IEndpoint
         {
             var result = await createProductFeature.CreateAsync(productRequest.ToProduct());
 
-            if (result.IsFailed) return Results.BadRequest(result.Reasons);
+            if (result.IsFailed) return Results.BadRequest(result.ToErrorResponse());
 
             return Results.Ok(result.Value);
         });

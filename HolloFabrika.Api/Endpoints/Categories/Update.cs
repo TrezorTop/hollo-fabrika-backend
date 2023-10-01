@@ -2,6 +2,7 @@ using FluentValidation;
 using HolloFabrika.Api.Contracts;
 using HolloFabrika.Api.Contracts.Request;
 using HolloFabrika.Api.Endpoints.Interfaces;
+using HolloFabrika.Api.Extensions;
 using HolloFabrika.Feature.Entities;
 using HolloFabrika.Feature.Features.Categories;
 using Attribute = HolloFabrika.Feature.Entities.Attribute;
@@ -36,7 +37,7 @@ public class Update : IEndpoint
 
             var result = await updateCategoryFeature.UpdateAsync(category);
 
-            if (result.IsFailed) return Results.BadRequest(result.Reasons);
+            if (result.IsFailed) return Results.BadRequest(result.ToErrorResponse());
 
             return Results.Ok(result.Value);
         });

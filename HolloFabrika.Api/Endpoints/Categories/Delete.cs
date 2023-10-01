@@ -1,6 +1,7 @@
 using HolloFabrika.Api.Contracts;
 using HolloFabrika.Api.Contracts.Response;
 using HolloFabrika.Api.Endpoints.Interfaces;
+using HolloFabrika.Api.Extensions;
 using HolloFabrika.Feature.Features.Categories;
 
 namespace HolloFabrika.Api.Endpoints.Categories;
@@ -13,7 +14,7 @@ public class Delete : IEndpoint
         {
             var result = await deleteCategoryFeature.DeleteAsync(id);
 
-            if (result.IsFailed) return Results.NotFound(result.Reasons);
+            if (result.IsFailed) return Results.NotFound(result.ToErrorResponse());
 
             return Results.Ok(new CategoryResponse
             {

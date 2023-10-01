@@ -3,7 +3,7 @@ namespace HolloFabrika.Feature.Entities;
 public class Category
 {
     public Guid Id { get; set; } = Guid.NewGuid();
-    public required string? Name { get; set; }
+    public required string Name { get; set; }
     public required ICollection<Attribute> Attributes { get; set; } = new List<Attribute>();
 }
 

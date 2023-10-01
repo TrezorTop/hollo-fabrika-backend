@@ -1,8 +1,9 @@
-using FluentValidation;
 using HolloFabrika.Api.Contracts;
 using HolloFabrika.Api.Contracts.Request;
 using HolloFabrika.Api.Contracts.Response;
 using HolloFabrika.Api.Endpoints.Interfaces;
+using HolloFabrika.Api.Extensions;
+using HolloFabrika.Api.Validators.Filters;
 using HolloFabrika.Feature.Entities;
 using HolloFabrika.Feature.Features.Categories;
 using Attribute = HolloFabrika.Feature.Entities.Attribute;
@@ -15,13 +16,9 @@ public class Create : IEndpoint
     {
         app.MapPost(ApiRoutes.Categories.Create, async (
             CreateCategoryRequest categoryRequest,
-            CreateCategoryFeature createCategoryFeature,
-            IValidator<CreateCategoryRequest> validator
+            CreateCategoryFeature createCategoryFeature
         ) =>
         {
-            var validationResult = await validator.ValidateAsync(categoryRequest);
-            if (!validationResult.IsValid) return Results.BadRequest(validationResult.Errors);
-            
             var category = new Category
             {
                 Name = categoryRequest.Name,
@@ -33,7 +30,7 @@ public class Create : IEndpoint
 
             var result = await createCategoryFeature.CreateAsync(category);
 
-            if (result.IsFailed) return Results.BadRequest(result.Reasons);
+            if (result.IsFailed) return Results.BadRequest(result.ToErrorResponse());
 
             return Results.Ok(new CategoryResponse
             {
@@ -45,6 +42,6 @@ public class Create : IEndpoint
                     Name = x.Name
                 }).ToList(),
             });
-        });
+        }).AddEndpointFilter<ValidationFilter<CreateCategoryRequest>>();
     }
 }
