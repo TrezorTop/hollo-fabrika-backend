@@ -20,10 +20,11 @@ public class Delete : IEndpoint
             {
                 Id = result.Value.Id,
                 Name = result.Value.Name,
-                Attributes = result.Value.Attributes.Select(x => new CategoryAttributeResponse
+                Attributes = result.Value.Attributes.Select(x => new AttributeResponse
                 {
                     Id = x.Id,
-                    Name = x.Name
+                    Name = x.Name,
+                    CategoryId = result.Value.Id,
                 }).ToList(),
             });
         });

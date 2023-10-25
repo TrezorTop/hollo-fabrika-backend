@@ -17,7 +17,7 @@ public class ExceptionMiddleware : IMiddleware
             var result = e switch
             {
                 JsonException or { InnerException: JsonException } => Results.BadRequest("test"),
-                _ => Results.StatusCode(StatusCodes.Status500InternalServerError)
+                _ => Results.Problem(e.ToString())
             };
 
             await result.ExecuteAsync(context);

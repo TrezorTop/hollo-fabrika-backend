@@ -17,10 +17,11 @@ public class Get : IEndpoint
             {
                 Id = category.Id,
                 Name = category.Name,
-                Attributes = category.Attributes.Select(attribute => new CategoryAttributeResponse
+                Attributes = category.Attributes.Select(attribute => new AttributeResponse
                 {
                     Id = attribute.Id,
-                    Name = attribute.Name
+                    Name = attribute.Name,
+                    CategoryId = category.Id,
                 }).ToList(),
             }));
         });

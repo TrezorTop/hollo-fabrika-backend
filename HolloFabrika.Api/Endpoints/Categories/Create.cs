@@ -6,7 +6,6 @@ using HolloFabrika.Api.Extensions;
 using HolloFabrika.Api.Validators.Filters;
 using HolloFabrika.Feature.Entities;
 using HolloFabrika.Feature.Features.Categories;
-using Attribute = HolloFabrika.Feature.Entities.Attribute;
 
 namespace HolloFabrika.Api.Endpoints.Categories;
 
@@ -21,11 +20,7 @@ public class Create : IEndpoint
         {
             var category = new Category
             {
-                Name = categoryRequest.Name,
-                Attributes = categoryRequest.Attributes.Select(x => new Attribute
-                {
-                    Name = x.Name
-                }).ToList()
+                Name = categoryRequest.Name
             };
 
             var result = await createCategoryFeature.CreateAsync(category);
@@ -36,10 +31,11 @@ public class Create : IEndpoint
             {
                 Id = result.Value.Id,
                 Name = result.Value.Name,
-                Attributes = result.Value.Attributes.Select(x => new CategoryAttributeResponse
+                Attributes = result.Value.Attributes.Select(x => new AttributeResponse
                 {
                     Id = x.Id,
-                    Name = x.Name
+                    Name = x.Name,
+                    CategoryId = result.Value.Id
                 }).ToList(),
             });
         }).AddEndpointFilter<ValidationFilter<CreateCategoryRequest>>();

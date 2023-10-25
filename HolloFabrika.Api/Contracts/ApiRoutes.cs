@@ -31,4 +31,19 @@ public static class ApiRoutes
         
         public const string Update = $"{Base}/{{id:guid}}";
     }
+
+    public static class Attributes
+    {
+        public const string Base = "/attribute";
+
+        public const string Get = Base;
+
+        public const string GetById = $"{Base}/{{id:guid}}";
+
+        public const string Create = Base;
+
+        public const string Delete = $"{Base}/{{id:guid}}";
+        
+        public const string Update = $"{Base}/{{id:guid}}";
+    }
 }

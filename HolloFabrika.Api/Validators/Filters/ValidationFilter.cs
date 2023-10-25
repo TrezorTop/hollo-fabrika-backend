@@ -16,6 +16,8 @@ public class ValidationFilter<T> : IEndpointFilter
     {
         var argToValidate = context.GetArgument<T>(0);
 
+        // var argToValidate = context.Arguments.Single(t => t?.GetType() == typeof(T)); 
+
         if (argToValidate == null) return Results.StatusCode(StatusCodes.Status500InternalServerError);
 
         var result = await _validator.ValidateAsync(argToValidate);

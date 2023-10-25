@@ -20,7 +20,8 @@ public class UpdateCategoryFeature : IFeatureMarker
 
         if (oldCategory == null) return Result.Fail("Not found");
 
-        _applicationDatabase.Categories.Update(category);
+        oldCategory.Name = category.Name;
+
         await _applicationDatabase.SaveChangesAsync();
 
         return Result.Ok(category);
