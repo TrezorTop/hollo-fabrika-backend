@@ -31,12 +31,7 @@ public class CreateCategory : IEndpoint
             {
                 Id = result.Value.Id,
                 Name = result.Value.Name,
-                Attributes = result.Value.Attributes.Select(x => new AttributeResponse
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    CategoryId = result.Value.Id
-                }).ToList(),
+                Attributes = new List<AttributeResponse>(),
             });
         }).AddEndpointFilter<ValidationFilter<CreateCategoryRequest>>();
     }
