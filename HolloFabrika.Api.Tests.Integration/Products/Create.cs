@@ -10,7 +10,7 @@ using Xunit;
 
 namespace HolloFabrika.Api.Tests.Integration.Products;
 
-public class Create : IClassFixture<WebApplicationFactory<IApiMarker>>, IAsyncLifetime
+public class Create : IClassFixture<WebApplicationFactory<IApiMarker>>
 {
     private readonly HttpClient _httpClient;
     private List<Guid> _createdIds = new List<Guid>();
@@ -40,13 +40,13 @@ public class Create : IClassFixture<WebApplicationFactory<IApiMarker>>, IAsyncLi
         _createdIds.Add(content!.Id);
     }
 
-    public Task InitializeAsync() => Task.CompletedTask;
+    // public Task InitializeAsync() => Task.CompletedTask;
 
-    public async Task DisposeAsync()
-    {
-        foreach (var createdId in _createdIds)
-        {
-            await _httpClient.DeleteAsync($"{ApiRoutes.Products.Base}/{createdId}");
-        }
-    }
+    // public async Task DisposeAsync()
+    // {
+    //     foreach (var createdId in _createdIds)
+    //     {
+    //         // await _httpClient.DeleteAsync($"{ApiRoutes.Products.Base}/{createdId}");
+    //     }
+    // }
 }

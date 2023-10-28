@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using HolloFabrika.Api.Contracts;
 using HolloFabrika.Api.Contracts.Request;
 using HolloFabrika.Api.Contracts.Response;
@@ -14,25 +15,30 @@ public class CreateAttribute : IEndpoint
     public static void DefineEndpoint(IEndpointRouteBuilder app)
     {
         app.MapPost(ApiRoutes.Attributes.Create, async (
-            CreateAttributeRequest attributeRequest,
-            CreateAttributeFeature createAttributeFeature
-        ) =>
-        {
-            var attribute = new Attribute
+                CreateAttributeRequest attributeRequest,
+                CreateAttributeFeature createAttributeFeature
+            ) =>
             {
-                Name = attributeRequest.Name
-            };
+                var attribute = new Attribute
+                {
+                    Name = attributeRequest.Name
+                };
 
-            var result = await createAttributeFeature.CreateAsync(attribute);
-            
-            if (result.IsFailed) return Results.BadRequest(result.ToErrorResponse());
+                var result = await createAttributeFeature.CreateAsync(attribute);
 
-            return Results.Ok(new AttributeResponse
-            {
-                Id = result.Value.Id,
-                Name = result.Value.Name,
-                CategoryId = result.Value.CategoryId
-            });
-        }).AddEndpointFilter<ValidationFilter<CreateAttributeRequest>>();
+                if (result.IsFailed) return Results.BadRequest(result.ToErrorResponse());
+
+                return Results.Ok(new AttributeResponse
+                {
+                    Id = result.Value.Id,
+                    Name = result.Value.Name,
+                    CategoryId = result.Value.CategoryId
+                });
+            })
+            .AddEndpointFilter<ValidationFilter<CreateAttributeRequest>>()
+            .Accepts<CreateAttributeRequest>(MediaTypeNames.Application.Json)
+            .Produces<AttributeResponse>(StatusCodes.Status200OK)
+            .Produces<ErrorResponse>(StatusCodes.Status400BadRequest)
+            .WithTags(Tags.Attributes);
     }
 }

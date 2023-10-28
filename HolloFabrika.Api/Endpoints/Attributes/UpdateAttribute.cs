@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using HolloFabrika.Api.Contracts;
 using HolloFabrika.Api.Contracts.Request;
 using HolloFabrika.Api.Contracts.Response;
@@ -15,27 +16,32 @@ public class UpdateAttribute : IEndpoint
     public static void DefineEndpoint(IEndpointRouteBuilder app)
     {
         app.MapPut(ApiRoutes.Attributes.Update, async (
-            string id,
-            UpdateAttributeRequest attributeRequest,
-            UpdateAttributeFeature updateAttributeFeature
-        ) =>
-        {
-            var attribute = new Attribute
+                string id,
+                UpdateAttributeRequest attributeRequest,
+                UpdateAttributeFeature updateAttributeFeature
+            ) =>
             {
-                Id = Guid.Parse(id),
-                Name = attributeRequest.Name
-            };
+                var attribute = new Attribute
+                {
+                    Id = Guid.Parse(id),
+                    Name = attributeRequest.Name
+                };
 
-            var result = await updateAttributeFeature.UpdateAsync(attribute);
+                var result = await updateAttributeFeature.UpdateAsync(attribute);
 
-            if (result.IsFailed) return Results.BadRequest(result.ToErrorResponse());
+                if (result.IsFailed) return Results.BadRequest(result.ToErrorResponse());
 
-            return Results.Ok(new AttributeResponse
-            {
-                Id = result.Value.Id,
-                Name = result.Value.Name,
-                CategoryId = result.Value.CategoryId
-            });
-        }).AddEndpointFilter<ValidationFilter<UpdateAttributeValidator>>();
+                return Results.Ok(new AttributeResponse
+                {
+                    Id = result.Value.Id,
+                    Name = result.Value.Name,
+                    CategoryId = result.Value.CategoryId
+                });
+            })
+            .AddEndpointFilter<ValidationFilter<UpdateAttributeValidator>>()
+            .Accepts<UpdateAttributeRequest>(MediaTypeNames.Application.Json)
+            .Produces<AttributeResponse>(StatusCodes.Status200OK)
+            .Produces<ErrorResponse>(StatusCodes.Status400BadRequest)
+            .WithTags(Tags.Attributes);
     }
 }

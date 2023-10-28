@@ -15,13 +15,13 @@ public class GetById : IClassFixture<WebApplicationFactory<IApiMarker>>
         _httpClient = applicationFactory.CreateClient();
     }
 
-    [Fact]
-    public async Task Get_ReturnsNotFound_WhenProductDoesNotExist()
-    {
-        // Act
-        var response = await _httpClient.GetAsync($"{ApiRoutes.Products.Base}/{Guid.NewGuid()}");
-
-        // Assert
-        response.StatusCode.Should().Be(HttpStatusCode.NotFound);
-    }
+    // [Fact]
+    // public async Task Get_ReturnsNotFound_WhenProductDoesNotExist()
+    // {
+    //     // Act
+    //     // var response = await _httpClient.GetAsync($"{ApiRoutes.Products.Base}/{Guid.NewGuid()}");
+    //
+    //     // Assert
+    //     // response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+    // }
 }

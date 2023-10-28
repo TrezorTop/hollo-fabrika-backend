@@ -4,7 +4,7 @@ public static class ApiRoutes
 {
     public static class Products
     {
-        public const string Base = "/product";
+        private const string Base = "/product";
 
         public const string Get = Base;
 
@@ -19,7 +19,7 @@ public static class ApiRoutes
 
     public static class Categories
     {
-        public const string Base = "/category";
+        private const string Base = "/category";
 
         public const string Get = Base;
 
@@ -34,7 +34,7 @@ public static class ApiRoutes
 
     public static class Attributes
     {
-        public const string Base = "/attribute";
+        private const string Base = "/attribute";
 
         public const string Get = Base;
 

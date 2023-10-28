@@ -13,7 +13,7 @@ public class GetByIdAttribute : IEndpoint
         app.MapGet(ApiRoutes.Attributes.GetById, async (string id, GetByIdAttributeFeature getByIdAttributeFeature) =>
         {
             var result = await getByIdAttributeFeature.GetByIdAsync(id);
-            
+
             if (result.IsFailed) return Results.NotFound(result.ToErrorResponse());
 
             return Results.Ok(new AttributeResponse
@@ -22,6 +22,9 @@ public class GetByIdAttribute : IEndpoint
                 Name = result.Value.Name,
                 CategoryId = result.Value.CategoryId
             });
-        });
+        })
+            .Produces<AttributeResponse>(StatusCodes.Status200OK)
+            .Produces<ErrorResponse>(StatusCodes.Status404NotFound)
+            .WithTags(Tags.Attributes);
     }
 }
