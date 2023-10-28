@@ -16,12 +16,12 @@ public class GetByIdCategoryFeature : IFeatureMarker
 
     public async Task<Result<Category>> GetByIdAsync(string id)
     {
-        var product = await _applicationDatabase.Categories
+        var category = await _applicationDatabase.Categories
             .Include(x => x.Attributes)
             .FirstOrDefaultAsync(x => id == x.Id.ToString());
 
-        if (product == null) return Result.Fail("Category not found");
+        if (category == null) return Result.Fail("Not found");
 
-        return Result.Ok(product);
+        return Result.Ok(category);
     }
 }

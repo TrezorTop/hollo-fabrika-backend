@@ -6,7 +6,7 @@ using HolloFabrika.Feature.Features.Products;
 
 namespace HolloFabrika.Api.Endpoints.Products;
 
-public class Create : IEndpoint
+public class CreateProduct : IEndpoint
 {
     public static void DefineEndpoint(IEndpointRouteBuilder app)
     {

@@ -5,7 +5,7 @@ using HolloFabrika.Feature.Features.Categories;
 
 namespace HolloFabrika.Api.Endpoints.Categories;
 
-public class Get : IEndpoint
+public class GetCategory : IEndpoint
 {
     public static void DefineEndpoint(IEndpointRouteBuilder app)
     {

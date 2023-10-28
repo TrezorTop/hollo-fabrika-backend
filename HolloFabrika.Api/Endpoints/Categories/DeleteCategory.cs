@@ -6,7 +6,7 @@ using HolloFabrika.Feature.Features.Categories;
 
 namespace HolloFabrika.Api.Endpoints.Categories;
 
-public class Delete : IEndpoint
+public class DeleteCategory : IEndpoint
 {
     public static void DefineEndpoint(IEndpointRouteBuilder app)
     {

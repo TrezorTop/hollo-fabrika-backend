@@ -4,7 +4,7 @@ using HolloFabrika.Feature.Features.Products;
 
 namespace HolloFabrika.Api.Endpoints.Products;
 
-public class Get : IEndpoint
+public class GetProduct : IEndpoint
 {
     public static void DefineEndpoint(IEndpointRouteBuilder app)
     {

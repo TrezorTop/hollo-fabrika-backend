@@ -14,14 +14,12 @@ public class ValidationFilter<T> : IEndpointFilter
 
     public async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
     {
-        var argToValidate = context.GetArgument<T>(0);
-
-        // var argToValidate = context.Arguments.Single(t => t?.GetType() == typeof(T)); 
+        var argToValidate = context.Arguments.SingleOrDefault(t => t?.GetType() == typeof(T));
 
         if (argToValidate == null) return Results.StatusCode(StatusCodes.Status500InternalServerError);
 
-        var result = await _validator.ValidateAsync(argToValidate);
-
+        var result = await _validator.ValidateAsync((T)argToValidate);
+        
         if (!result.IsValid) return Results.BadRequest(result.ToErrorResponse());
 
         return await next(context);

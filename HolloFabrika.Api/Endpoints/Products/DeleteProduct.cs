@@ -5,7 +5,7 @@ using HolloFabrika.Feature.Features.Products;
 
 namespace HolloFabrika.Api.Endpoints.Products;
 
-public class Delete : IEndpoint
+public class DeleteProduct : IEndpoint
 {
     public static void DefineEndpoint(IEndpointRouteBuilder app)
     {

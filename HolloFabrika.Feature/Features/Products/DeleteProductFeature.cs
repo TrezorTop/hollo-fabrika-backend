@@ -18,7 +18,7 @@ public class DeleteProductFeature : IFeatureMarker
     {
         var product = await _applicationDatabase.Products.FirstOrDefaultAsync(x => x.Id.ToString() == id);
 
-        if (product == null) return Result.Fail("Product not found");
+        if (product == null) return Result.Fail("Not found");
 
         _applicationDatabase.Products.Remove(product);
         await _applicationDatabase.SaveChangesAsync();

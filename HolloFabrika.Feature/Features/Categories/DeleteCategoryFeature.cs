@@ -20,7 +20,7 @@ public class DeleteCategoryFeature : IFeatureMarker
             .Include(x => x.Attributes)
             .FirstOrDefaultAsync(x => id == x.Id.ToString());
 
-        if (category is null) return Result.Fail("Category not found");
+        if (category is null) return Result.Fail("Not found");
 
         _applicationDatabase.Categories.Remove(category);
         await _applicationDatabase.SaveChangesAsync();
