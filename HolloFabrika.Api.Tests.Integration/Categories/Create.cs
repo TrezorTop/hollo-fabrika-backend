@@ -9,16 +9,16 @@ using Xunit;
 
 namespace HolloFabrika.Api.Tests.Integration.Categories;
 
-public class Create : IClassFixture<ApiFactory>
+public class Create : IClassFixture<RespawnerFactory>
 {
     private readonly HttpClient _httpClient;
 
     private readonly Faker<CreateCategoryRequest> _categoryFaker = new Faker<CreateCategoryRequest>()
         .RuleFor(x => x.Name, faker => faker.Commerce.Categories(1).Single());
 
-    public Create(ApiFactory apiFactory)
+    public Create(RespawnerFactory respawnerFactory)
     {
-        _httpClient = apiFactory.CreateClient();
+        _httpClient = respawnerFactory.CreateClient();
     }
 
     [Fact]
